@@ -16,3 +16,10 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    // categories
+    $router->get('categories', ['uses' => 'CategoriesController@index']);
+    $router->get('categories/{id}', ['uses' => 'CategoriesController@show']);
+    $router->post('categories', ['uses' => 'CategoriesController@create']);
+});

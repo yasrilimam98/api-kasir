@@ -14,7 +14,21 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $data = Categories::all();
+        if (count($data) > 0) {
+            $result = [
+                'status' => 200,
+                'pesan' => 'Data berhasil ditampilkan',
+                'categories' => $data
+            ];
+        } else {
+            $result = [
+                'status' => 500,
+                'pesan' => 'Gagal',
+                'categories' => ''
+            ];
+        }
+        return response()->json($result);
     }
 
     /**
@@ -22,9 +36,31 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'required'
+        ]);
+
+        $data = [
+            'nama' => $request->input('nama')
+        ];
+        $categories = Categories::create($data);
+
+        if ($categories) {
+            $result = [
+                'status' => 200,
+                'pesan' => 'Data berhasil ditambahkan',
+                'data' => $data
+            ];
+        } else {
+            $result = [
+                'status' => 500,
+                'pesan' => 'Gagal',
+                'data' => ''
+            ];
+        }
+        return response()->json($result);
     }
 
     /**
