@@ -49,6 +49,15 @@ $app->singleton(
 );
 
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+
+// CorsMiddleware
+$app->middleware([
+    App\Http\Middleware\CorsMiddleware::class
+]);
+
+// CatchAllOptionsRequestsProvider
+$app->register(App\Providers\CatchAllOptionsRequestsProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Register Config Files

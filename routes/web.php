@@ -18,8 +18,18 @@ $router->get('/', function () use ($router) {
 });
 
 $router->group(['prefix' => 'api'], function () use ($router) {
+
     // categories
     $router->get('categories', ['uses' => 'CategoriesController@index']);
     $router->get('categories/{id}', ['uses' => 'CategoriesController@show']);
     $router->post('categories', ['uses' => 'CategoriesController@create']);
+    $router->put('categories/{id}', ['uses' => 'CategoriesController@update']);
+    $router->delete('categories/{id}', ['uses' => 'CategoriesController@delete']);
+
+    // products
+    $router->get('products', ['uses' => 'ProductsController@index']);
+    $router->get('products/{id}', ['uses' => 'ProductsController@show']);
+    $router->post('products', ['uses' => 'ProductsController@create']);
+    $router->put('products/{id}', ['uses' => 'ProductsController@update']);
+    $router->delete('products/{id}', ['uses' => 'ProductsController@delete']);
 });
