@@ -32,4 +32,11 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->post('products', ['uses' => 'ProductsController@create']);
     $router->put('products/{id}', ['uses' => 'ProductsController@update']);
     $router->delete('products/{id}', ['uses' => 'ProductsController@delete']);
+
+    // keranjang
+    $router->get('keranjangs', ['uses' => 'KeranjangController@index']);
+    $router->get('keranjangs/{id}', ['uses' => 'KeranjangController@show']);
+    $router->post('keranjangs', ['uses' => 'KeranjangController@create']);
+    $router->put('keranjangs/{id}', ['uses' => 'KeranjangController@update']);
+    $router->delete('keranjangs/{id}', ['uses' => 'KeranjangController@delete']);
 });
